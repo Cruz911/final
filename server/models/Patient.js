@@ -1,78 +1,51 @@
-const Sequelize = require('sequelize')
-const db = require("../config/database");
-const Notifications = require('./Notification');
-const Message = require('./Message');
-const Medication = require('./Medication');
-const Job = require('./Job');
-const HealthCentre = require('./HealthCentre');
-const HealthWorker = require('./HealthWorker');
-const Aid = require('./HealthCentre');
-const Appointments = require('./Appointment');
+const db = require('../config/database')
 
-const Patient = db.define('patient', {
-    first_name: {
-        type: Sequelize.STRING
-    },
-    last_name: {
-        type: Sequelize.STRING
-    },
-    email: {
-        type: Sequelize.STRING
-    },
-    password: {
-        type: Sequelize.STRING
-    },
-    sex: {
-        type: Sequelize.STRING
-    },
-    healthcentre: {
-        type: Sequelize.STRING
-    },
-    contact_email: {
-        type: Sequelize.STRING
-    },
-    phone_number: {
-        type: Sequelize.STRING
-    },
-    notifications: {
-        type: Sequelize.STRING
-    },
-    messages: {
-        type: Sequelize.STRING
-    },
-    allergies: {
-        type: Sequelize.STRING
-    },
-    viral_load: {
-        type: Sequelize.STRING
-    },
-    medications: {
-        type: Sequelize.STRING
-    },
-    appointments: {
-        type: Sequelize.STRING
-    },
-    address: {
-        type: Sequelize.STRING
-    },
-    district: {
-        type: Sequelize.STRING
-    },
-    aid: {
-        type: Sequelize.STRING
-    },
-    job: {
-        type: Sequelize.STRING
-    },
-});
-
-Patient.hasMany(Message)
-Patient.hasMany(Notifications)
-Patient.hasMany(Medication)
-Patient.hasMany(Job)
-Patient.hasMany(Aid)
-Patient.hasOne(HealthCentre)
-Patient.hasMany(HealthWorker)
-Patient.hasMany(Appointments)
-
-module.exports = Patient
+module.exports = (DataTypes) => {
+    const Patient = db.define('Patient', {
+            first_name: {
+                type: DataTypes.STRING
+            },
+            last_name: {
+                type: DataTypes.STRING
+            },
+            email: {
+                type: DataTypes.STRING
+            },
+            password: {
+                type: DataTypes.STRING
+            },
+            sex: {
+                type: DataTypes.STRING
+            },
+            contact_email: {
+                type: DataTypes.STRING
+            },
+            phone_number: {
+                type: DataTypes.STRING
+            },
+            address: {
+                type: DataTypes.STRING
+            },
+            district: {
+                type: DataTypes.STRING
+            },
+            created_at : {
+                type : DataTypes.DATE,
+                allowNull : false
+            },
+            updated_at : {
+                type : DataTypes.DATE
+            },
+            deleted_at : {
+                type : DataTypes.DATE
+            }
+            
+        }, {});
+        Patient.associate = function (models) {
+          // associations can be defined here
+        //   Patient.hasMany(models.Project, {
+        //     foreignKey: 'patient'
+        //   })
+        };
+        return Patient;
+      };

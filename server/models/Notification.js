@@ -1,22 +1,34 @@
-const Sequelize = require('sequelize')
-const db = require("../config/database");
-const Patient = require('./Patient');
+module.exports = (Sequelize,sequelize,Model)=>{
 
-const Notifications = db.define('notifications', {
-    title: {
-        type: Sequelize.STRING
-    },
-    description: {
-        type: Sequelize.STRING
-    },
-    status: {
-        type: Sequelize.STRING
-    },
-    health_worker: {
-        type: Sequelize.STRING
-    },
-});
-
-Notifications.belongsTo(Patient)
-
-module.exports = Notifications;
+    class Notifications extends Model{
+    
+    }
+    
+    return Notifications.init({
+        title: {
+            type: Sequelize.STRING
+        },
+        description: {
+            type: Sequelize.STRING
+        },
+        status: {
+            type: Sequelize.STRING
+        },
+        health_worker: {
+            type: Sequelize.STRING
+        },
+        created_at : {
+            type : Sequelize.DATE,
+            allowNull : false
+        },
+        updated_at : {
+            type : Sequelize.DATE
+        },
+        deleted_at : {
+            type : Sequelize.DATE
+        }
+        },{
+            sequelize,
+            modelName : "notifications"
+        })
+    }

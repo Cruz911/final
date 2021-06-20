@@ -1,22 +1,31 @@
-const Sequelize = require('sequelize')
-const db = require("../config/database");
-const Patient = require('./Patient');
+module.exports = (Sequelize,sequelize,Model)=>{
 
-const Job = db.define('job', {
-    patient_id: {
-        type: Sequelize.STRING
-    },
-    title: {
-        type: Sequelize.STRING
-    },
-    description: {
-        type: Sequelize.STRING
-    },
-    status: {
-        type: Sequelize.STRING
+    class Job extends Model{
+    
     }
-});
-
-Job.BelongsTo(Patient)
-
-module.exports = Job
+    
+    return Job.init({
+        title: {
+            type: Sequelize.STRING
+        },
+        description: {
+            type: Sequelize.STRING
+        },
+        status: {
+            type: Sequelize.STRING
+        },
+        created_at : {
+            type : Sequelize.DATE,
+            allowNull : false
+        },
+        updated_at : {
+            type : Sequelize.DATE
+        },
+        deleted_at : {
+            type : Sequelize.DATE
+        }
+        },{
+            sequelize,
+            modelName : "jobs"
+        })
+    }

@@ -1,29 +1,17 @@
 module.exports = (Sequelize,sequelize,Model)=>{
 
-    class HealthWorker extends Model{
+    class JobList extends Model{
     
     }
     
-    return HealthWorker.init({
-        first_name: {
+    return JobList.init({
+        title: {
             type: Sequelize.STRING
         },
-        last_name: {
+        description: {
             type: Sequelize.STRING
         },
-        email: {
-            type: Sequelize.STRING
-        },
-        centre_id: {
-            type: Sequelize.STRING
-        },
-        role: {
-            type: Sequelize.STRING
-        },
-        admin: {
-            type: Sequelize.BOOLEAN
-        },
-        password: {
+        status: {
             type: Sequelize.STRING
         },
         created_at : {
@@ -36,8 +24,9 @@ module.exports = (Sequelize,sequelize,Model)=>{
         deleted_at : {
             type : Sequelize.DATE
         }
-        },{
+        },
+        {
             sequelize,
-            modelName : "health_workers"
+            modelName : "joblist"
         })
     }

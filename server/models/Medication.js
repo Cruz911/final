@@ -1,25 +1,34 @@
-const Sequelize = require('sequelize')
-const db = require("../config/database");
-const Patient = require('./Patient');
+module.exports = (Sequelize,sequelize,Model)=>{
 
-const Medication = db.define('medication', {
-    patient_id: {
-        type: Sequelize.STRING
-    },
-    title: {
-        type: Sequelize.STRING
-    },
-    description: {
-        type: Sequelize.STRING
-    },
-    status: {
-        type: Sequelize.STRING
-    },
-    health_worker: {
-        type: Sequelize.STRING
-    },
-});
-
-Medication.belongsTo(Patient)
-
-module.exports = Medication
+    class Medication extends Model{
+    
+    }
+    
+    return Medication.init({
+        title: {
+            type: Sequelize.STRING
+        },
+        description: {
+            type: Sequelize.STRING
+        },
+        status: {
+            type: Sequelize.STRING
+        },
+        health_worker: {
+            type: Sequelize.STRING
+        },
+        created_at : {
+            type : Sequelize.DATE,
+            allowNull : false
+        },
+        updated_at : {
+            type : Sequelize.DATE
+        },
+        deleted_at : {
+            type : Sequelize.DATE
+        }
+        },{
+            sequelize,
+            modelName : "medication"
+        })
+    }

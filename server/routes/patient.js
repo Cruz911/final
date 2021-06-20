@@ -1,7 +1,6 @@
 const express = require("express");
+const Patient = require("../models/Patient");
 const router = express.Router();
-const db = require('../config/database');
-const Patient = require('../models/Patient')
 
 router.get('/', (req, res)=>{
     Patient.findAll()

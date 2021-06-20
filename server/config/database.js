@@ -10,3 +10,5 @@ module.exports = new Sequelize('codegigs', 'postgres', 'root', {
         idle: 10000
       }
   });
+
+

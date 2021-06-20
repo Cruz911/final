@@ -1,29 +1,20 @@
 module.exports = (Sequelize,sequelize,Model)=>{
 
-    class HealthWorker extends Model{
+    class Allergies extends Model{
     
     }
     
-    return HealthWorker.init({
-        first_name: {
+    return Allergies.init({
+        title: {
             type: Sequelize.STRING
         },
-        last_name: {
+        description: {
             type: Sequelize.STRING
         },
-        email: {
+        status: {
             type: Sequelize.STRING
         },
-        centre_id: {
-            type: Sequelize.STRING
-        },
-        role: {
-            type: Sequelize.STRING
-        },
-        admin: {
-            type: Sequelize.BOOLEAN
-        },
-        password: {
+        health_worker: {
             type: Sequelize.STRING
         },
         created_at : {
@@ -38,6 +29,6 @@ module.exports = (Sequelize,sequelize,Model)=>{
         }
         },{
             sequelize,
-            modelName : "health_workers"
+            modelName : "allergies"
         })
     }

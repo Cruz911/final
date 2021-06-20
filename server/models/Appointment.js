@@ -1,33 +1,41 @@
-const Sequelize = require('sequelize')
-const db = require("../config/database");
-const Patient = require('./Patient');
+module.exports = (Sequelize,sequelize,Model)=>{
 
-const Appointment = db.define('appointment', {
-    title: {
-        type: Sequelize.STRING
-    },
-    patient_id: {
-        type: Sequelize.STRING
-    },
-    date:{
-        type: Sequelize.DATEONLY
+    class Appointment extends Model{
+    
     }
-    ,
-    time: {
-        type: Sequelize.TIME
+    
+    return Appointment.init({
+        title: {
+            type: Sequelize.STRING
+        },
+        date:{
+            type: Sequelize.DATEONLY
+        },
+        time: {
+            type: Sequelize.TIME
+        },
+        description: {
+            type: Sequelize.STRING
+        },
+        status: {
+            type : Sequelize.ENUM,
+            values : ["approved","rejected","in review"]
+        },
+        health_worker: {
+            type: Sequelize.STRING
+        },
+        created_at : {
+            type : Sequelize.DATE,
+            allowNull : false
+        },
+        updated_at : {
+            type : Sequelize.DATE
+        },
+        deleted_at : {
+            type : Sequelize.DATE
+        }
+        },{
+            sequelize,
+            modelName : "appointments"
+        })
     }
-    ,
-    description: {
-        type: Sequelize.STRING
-    },
-    status: {
-        type: Sequelize.STRING
-    },
-    health_worker: {
-        type: Sequelize.STRING
-    },
-});
-
-Appointment.belongsTo(Patient)
-
-module.exports = Appointment
